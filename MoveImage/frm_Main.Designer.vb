@@ -68,6 +68,7 @@ Partial Class frm_Main
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -138,7 +139,7 @@ Partial Class frm_Main
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnu_Settings, Me.mnu_TheProgram})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(734, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(754, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -147,7 +148,7 @@ Partial Class frm_Main
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.lst_SelectedImages)
         Me.GroupBox1.Controls.Add(Me.cmd_NextStep)
-        Me.GroupBox1.Location = New System.Drawing.Point(316, 353)
+        Me.GroupBox1.Location = New System.Drawing.Point(316, 386)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(365, 151)
         Me.GroupBox1.TabIndex = 46
@@ -168,7 +169,7 @@ Partial Class frm_Main
         'Label6
         '
         Me.Label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label6.Location = New System.Drawing.Point(158, 24)
+        Me.Label6.Location = New System.Drawing.Point(152, 40)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(126, 31)
         Me.Label6.TabIndex = 40
@@ -178,7 +179,7 @@ Partial Class frm_Main
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label5.Location = New System.Drawing.Point(152, 299)
+        Me.Label5.Location = New System.Drawing.Point(152, 329)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(126, 16)
         Me.Label5.TabIndex = 39
@@ -187,7 +188,7 @@ Partial Class frm_Main
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(152, 55)
+        Me.Label4.Location = New System.Drawing.Point(152, 71)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(123, 16)
         Me.Label4.TabIndex = 38
@@ -200,7 +201,7 @@ Partial Class frm_Main
         Me.lst_Bmp.ContextMenuStrip = Me.ContextMenuStrip2
         Me.lst_Bmp.ForeColor = System.Drawing.SystemColors.WindowText
         Me.lst_Bmp.FormattingEnabled = True
-        Me.lst_Bmp.Location = New System.Drawing.Point(152, 315)
+        Me.lst_Bmp.Location = New System.Drawing.Point(152, 348)
         Me.lst_Bmp.Name = "lst_Bmp"
         Me.lst_Bmp.Size = New System.Drawing.Size(158, 160)
         Me.lst_Bmp.Sorted = True
@@ -227,7 +228,7 @@ Partial Class frm_Main
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(10, 24)
+        Me.Label3.Location = New System.Drawing.Point(12, 47)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(134, 31)
         Me.Label3.TabIndex = 36
@@ -236,7 +237,7 @@ Partial Class frm_Main
         'lbl_CountScanner
         '
         Me.lbl_CountScanner.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lbl_CountScanner.Location = New System.Drawing.Point(10, 491)
+        Me.lbl_CountScanner.Location = New System.Drawing.Point(10, 524)
         Me.lbl_CountScanner.Name = "lbl_CountScanner"
         Me.lbl_CountScanner.Size = New System.Drawing.Size(136, 32)
         Me.lbl_CountScanner.TabIndex = 35
@@ -247,7 +248,7 @@ Partial Class frm_Main
         Me.lst_Scaner.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lst_Scaner.FormattingEnabled = True
-        Me.lst_Scaner.Location = New System.Drawing.Point(13, 55)
+        Me.lst_Scaner.Location = New System.Drawing.Point(15, 75)
         Me.lst_Scaner.Name = "lst_Scaner"
         Me.lst_Scaner.Size = New System.Drawing.Size(133, 433)
         Me.lst_Scaner.Sorted = True
@@ -256,7 +257,7 @@ Partial Class frm_Main
         'lbl_DirectorySelect
         '
         Me.lbl_DirectorySelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lbl_DirectorySelect.Location = New System.Drawing.Point(152, 491)
+        Me.lbl_DirectorySelect.Location = New System.Drawing.Point(152, 524)
         Me.lbl_DirectorySelect.Name = "lbl_DirectorySelect"
         Me.lbl_DirectorySelect.Size = New System.Drawing.Size(136, 32)
         Me.lbl_DirectorySelect.TabIndex = 33
@@ -269,7 +270,7 @@ Partial Class frm_Main
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lst_Jpg.ContextMenuStrip = Me.ContextMenuStrip2
         Me.lst_Jpg.FormattingEnabled = True
-        Me.lst_Jpg.Location = New System.Drawing.Point(152, 71)
+        Me.lst_Jpg.Location = New System.Drawing.Point(155, 90)
         Me.lst_Jpg.Name = "lst_Jpg"
         Me.lst_Jpg.Size = New System.Drawing.Size(158, 225)
         Me.lst_Jpg.Sorted = True
@@ -284,7 +285,7 @@ Partial Class frm_Main
         '
         Me.lbl_CurrentImage.AutoSize = True
         Me.lbl_CurrentImage.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lbl_CurrentImage.Location = New System.Drawing.Point(313, 32)
+        Me.lbl_CurrentImage.Location = New System.Drawing.Point(313, 51)
         Me.lbl_CurrentImage.Name = "lbl_CurrentImage"
         Me.lbl_CurrentImage.Size = New System.Drawing.Size(158, 17)
         Me.lbl_CurrentImage.TabIndex = 49
@@ -294,7 +295,7 @@ Partial Class frm_Main
         '
         Me.cmd_MoveDown.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmd_MoveDown.Image = Global.MoveImage.My.Resources.Resources.стрелка_вниз2_1
-        Me.cmd_MoveDown.Location = New System.Drawing.Point(687, 406)
+        Me.cmd_MoveDown.Location = New System.Drawing.Point(687, 439)
         Me.cmd_MoveDown.Name = "cmd_MoveDown"
         Me.cmd_MoveDown.Size = New System.Drawing.Size(38, 27)
         Me.cmd_MoveDown.TabIndex = 48
@@ -304,7 +305,7 @@ Partial Class frm_Main
         '
         Me.cmd_MoveUp.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmd_MoveUp.Image = Global.MoveImage.My.Resources.Resources.стрелка_вверх2_1
-        Me.cmd_MoveUp.Location = New System.Drawing.Point(687, 373)
+        Me.cmd_MoveUp.Location = New System.Drawing.Point(687, 406)
         Me.cmd_MoveUp.Name = "cmd_MoveUp"
         Me.cmd_MoveUp.Size = New System.Drawing.Size(38, 27)
         Me.cmd_MoveUp.TabIndex = 47
@@ -314,7 +315,7 @@ Partial Class frm_Main
         '
         Me.cmd_Next.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmd_Next.Image = CType(resources.GetObject("cmd_Next.Image"), System.Drawing.Image)
-        Me.cmd_Next.Location = New System.Drawing.Point(612, 315)
+        Me.cmd_Next.Location = New System.Drawing.Point(612, 348)
         Me.cmd_Next.Name = "cmd_Next"
         Me.cmd_Next.Size = New System.Drawing.Size(33, 32)
         Me.cmd_Next.TabIndex = 45
@@ -325,7 +326,7 @@ Partial Class frm_Main
         '
         Me.cmd_Previos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmd_Previos.Image = CType(resources.GetObject("cmd_Previos.Image"), System.Drawing.Image)
-        Me.cmd_Previos.Location = New System.Drawing.Point(573, 315)
+        Me.cmd_Previos.Location = New System.Drawing.Point(573, 348)
         Me.cmd_Previos.Name = "cmd_Previos"
         Me.cmd_Previos.Size = New System.Drawing.Size(33, 32)
         Me.cmd_Previos.TabIndex = 44
@@ -336,7 +337,7 @@ Partial Class frm_Main
         '
         Me.cmd_Flip90.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmd_Flip90.Image = CType(resources.GetObject("cmd_Flip90.Image"), System.Drawing.Image)
-        Me.cmd_Flip90.Location = New System.Drawing.Point(355, 314)
+        Me.cmd_Flip90.Location = New System.Drawing.Point(355, 347)
         Me.cmd_Flip90.Name = "cmd_Flip90"
         Me.cmd_Flip90.Size = New System.Drawing.Size(36, 33)
         Me.cmd_Flip90.TabIndex = 5
@@ -349,9 +350,9 @@ Partial Class frm_Main
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.img_PictureShow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.img_PictureShow.ErrorImage = Global.MoveImage.My.Resources.Resources.Нет_изображения
-        Me.img_PictureShow.Location = New System.Drawing.Point(316, 55)
+        Me.img_PictureShow.Location = New System.Drawing.Point(316, 71)
         Me.img_PictureShow.Name = "img_PictureShow"
-        Me.img_PictureShow.Size = New System.Drawing.Size(410, 254)
+        Me.img_PictureShow.Size = New System.Drawing.Size(430, 271)
         Me.img_PictureShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.img_PictureShow.TabIndex = 41
         Me.img_PictureShow.TabStop = False
@@ -362,7 +363,7 @@ Partial Class frm_Main
         Me.cmd_Flip270.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.cmd_Flip270.ForeColor = System.Drawing.SystemColors.ScrollBar
         Me.cmd_Flip270.Image = CType(resources.GetObject("cmd_Flip270.Image"), System.Drawing.Image)
-        Me.cmd_Flip270.Location = New System.Drawing.Point(316, 314)
+        Me.cmd_Flip270.Location = New System.Drawing.Point(316, 347)
         Me.cmd_Flip270.Name = "cmd_Flip270"
         Me.cmd_Flip270.Size = New System.Drawing.Size(36, 33)
         Me.cmd_Flip270.TabIndex = 4
@@ -372,7 +373,7 @@ Partial Class frm_Main
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(646, 29)
+        Me.Button1.Location = New System.Drawing.Point(666, 29)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 20)
         Me.Button1.TabIndex = 50
@@ -386,11 +387,21 @@ Partial Class frm_Main
         'BackgroundWorker1
         '
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 24)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 51
+        Me.Label1.Text = "Label1"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(734, 525)
+        Me.ClientSize = New System.Drawing.Size(754, 558)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lbl_CurrentImage)
         Me.Controls.Add(Me.cmd_MoveDown)
@@ -467,5 +478,6 @@ Partial Class frm_Main
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents Timer3 As System.Windows.Forms.Timer
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
