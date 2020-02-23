@@ -401,13 +401,6 @@
     <None Include="Resources\Новые возможности.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="CheckComboBoxTest\CheckComboBoxTest.csproj">
-      <Project>{04ba4fd3-12a1-4e0b-adc2-c898edfb1016}</Project>
-      <Name>CheckComboBoxTest</Name>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PublishFile Include="CheckComboBoxTest">
       <Visible>False</Visible>
       <Group>
@@ -458,6 +451,12 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CheckComboBoxTest\CheckComboBoxTest.csproj">
+      <Project>{04ba4fd3-12a1-4e0b-adc2-c898edfb1016}</Project>
+      <Name>CheckComboBoxTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
