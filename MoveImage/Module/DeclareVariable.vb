@@ -5,13 +5,12 @@ Imports System.Data.OleDb
 
 Module DeclarationVariable
 
-    '''' <summary>
-    '''' Путь папки, где находяться иображения от сканера | Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\
-    '''' </summary>
-    '''' <remarks></remarks>
-    'Public path_Scaner As String '= "Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\"
-
+    ''' <summary>
+    ''' Путь папки, где находяться иображения от сканера | Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\
+    ''' </summary>
+    ''' <remarks></remarks>
     Public path_Scaner As String
+    'Public path_Scaner As String '= "Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\"
 
     ' Сканер
     Public di_Scaner As DirectoryInfo
