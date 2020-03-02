@@ -10,7 +10,9 @@ Public Class frm_Main
     Dim MouseCursor As Integer
     Dim SelectListBox As Integer
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim isLoadFromFile = False
+
+    Private Sub LoadScaner(sender As Object, e As EventArgs) Handles MyBase.Load, btnLoadScaner.Click
 
         Me.Height = SystemInformation.PrimaryMonitorSize.Height
         Me.Width = SystemInformation.PrimaryMonitorSize.Width
@@ -18,7 +20,21 @@ Public Class frm_Main
         Dim currentFile As FileSystemInfo
         Dim Count As Integer = 0
 
-        LoadFromPathFile()
+        If isLoadFromFile = False Then
+            LoadFromPathFile()
+            txtScanerPath.Text = path_Scaner
+        Else
+
+            path_Scaner = txtScanerPath.Text
+            If Not Directory.Exists(path_Scaner) Then
+                MessageBox.Show("Путь к папке сканер не существует. Введите правильный путь к папке сканер, и нажмите перейти!")
+                isLoadFromFile = False
+                Return
+            End If
+
+        End If
+
+
 
         subEnabled_Buttons(cmd_MoveUp, cmd_MoveDown, cmd_NextStep, False)
 
@@ -32,6 +48,7 @@ Public Class frm_Main
             Label6.Text = "Папка не выбрана: "
             lst_Jpg.Items.Clear()
 
+            lst_Scaner.Items.Clear()
             For Each currentFile In fs_Scaner
 
                 lst_Scaner.Items.Add(currentFile.Name)
@@ -43,8 +60,7 @@ Public Class frm_Main
 
             lbl_CountScanner.Text = "Всего: " & Count & " объектов."
 
-            Dim s As Integer
-            s = CType(Strings.Right(Count.ToString, 1), Integer)
+            Dim s As Integer = CType(Strings.Right(Count.ToString, 1), Integer)
 
             subCountImageInfo(Count, lbl_CountScanner, enDirectoryName.Scaner)
         Catch ex As Exception
@@ -60,6 +76,10 @@ Public Class frm_Main
 
             di_Scaner = New DirectoryInfo(path_Scaner)
             fs_Scaner = di_Scaner.GetDirectories()
+
+            If (Debugger.IsAttached) Then
+                Debugger.Break()
+            End If
 
             Label3.Text = di_Scaner.Name
 
@@ -556,7 +576,5 @@ Public Class frm_Main
         'Timer2.Stop()
         'MessageBox.Show("DAO LOAD")
     End Sub
-
-
 
 End Class

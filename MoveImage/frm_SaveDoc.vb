@@ -187,7 +187,11 @@ Public Class frm_SaveDoc
         Catch ex As Exception
             MessageBox.Show("По данной группе нет ни одного типа документа")
             cbx_TypeDoc.Enabled = False
-		End Try
+        End Try
+
+        If (Debugger.IsAttached) Then
+            Debugger.Break()
+        End If
 
 		'If cbx_GroupDoc.Text = "Техническая" Then
 		'cmd_SectorShow.Enabled = True
