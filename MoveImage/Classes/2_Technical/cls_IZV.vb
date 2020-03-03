@@ -4,7 +4,7 @@ Public Class cls_IZV
     Inherits cls_TypeDoc
 
 	Public Sub New()
-		boolDataBase = True
+        boolDataBase = False
 
         nameGroup = "Техническая"
         type_doc = "Извещение"
