@@ -68,7 +68,9 @@ Partial Class frm_Main
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblPathScan = New System.Windows.Forms.Label()
+        Me.btnLoadScaner = New System.Windows.Forms.Button()
+        Me.txtScanerPath = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -169,7 +171,7 @@ Partial Class frm_Main
         'Label6
         '
         Me.Label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label6.Location = New System.Drawing.Point(152, 40)
+        Me.Label6.Location = New System.Drawing.Point(152, 53)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(126, 31)
         Me.Label6.TabIndex = 40
@@ -179,7 +181,7 @@ Partial Class frm_Main
         '
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label5.Location = New System.Drawing.Point(152, 329)
+        Me.Label5.Location = New System.Drawing.Point(152, 316)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(126, 16)
         Me.Label5.TabIndex = 39
@@ -188,7 +190,7 @@ Partial Class frm_Main
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(152, 71)
+        Me.Label4.Location = New System.Drawing.Point(152, 82)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(123, 16)
         Me.Label4.TabIndex = 38
@@ -201,9 +203,9 @@ Partial Class frm_Main
         Me.lst_Bmp.ContextMenuStrip = Me.ContextMenuStrip2
         Me.lst_Bmp.ForeColor = System.Drawing.SystemColors.WindowText
         Me.lst_Bmp.FormattingEnabled = True
-        Me.lst_Bmp.Location = New System.Drawing.Point(152, 348)
+        Me.lst_Bmp.Location = New System.Drawing.Point(152, 335)
         Me.lst_Bmp.Name = "lst_Bmp"
-        Me.lst_Bmp.Size = New System.Drawing.Size(158, 160)
+        Me.lst_Bmp.Size = New System.Drawing.Size(158, 173)
         Me.lst_Bmp.Sorted = True
         Me.lst_Bmp.TabIndex = 3
         '
@@ -228,7 +230,7 @@ Partial Class frm_Main
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(12, 47)
+        Me.Label3.Location = New System.Drawing.Point(14, 53)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(134, 31)
         Me.Label3.TabIndex = 36
@@ -248,9 +250,9 @@ Partial Class frm_Main
         Me.lst_Scaner.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lst_Scaner.FormattingEnabled = True
-        Me.lst_Scaner.Location = New System.Drawing.Point(15, 75)
+        Me.lst_Scaner.Location = New System.Drawing.Point(15, 88)
         Me.lst_Scaner.Name = "lst_Scaner"
-        Me.lst_Scaner.Size = New System.Drawing.Size(133, 433)
+        Me.lst_Scaner.Size = New System.Drawing.Size(133, 420)
         Me.lst_Scaner.Sorted = True
         Me.lst_Scaner.TabIndex = 1
         '
@@ -270,9 +272,9 @@ Partial Class frm_Main
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lst_Jpg.ContextMenuStrip = Me.ContextMenuStrip2
         Me.lst_Jpg.FormattingEnabled = True
-        Me.lst_Jpg.Location = New System.Drawing.Point(155, 90)
+        Me.lst_Jpg.Location = New System.Drawing.Point(155, 101)
         Me.lst_Jpg.Name = "lst_Jpg"
-        Me.lst_Jpg.Size = New System.Drawing.Size(158, 225)
+        Me.lst_Jpg.Size = New System.Drawing.Size(158, 212)
         Me.lst_Jpg.Sorted = True
         Me.lst_Jpg.TabIndex = 2
         '
@@ -387,21 +389,39 @@ Partial Class frm_Main
         'BackgroundWorker1
         '
         '
-        'Label1
+        'lblPathScan
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 24)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 51
-        Me.Label1.Text = "Label1"
+        Me.lblPathScan.AutoSize = True
+        Me.lblPathScan.Location = New System.Drawing.Point(12, 27)
+        Me.lblPathScan.Name = "lblPathScan"
+        Me.lblPathScan.Size = New System.Drawing.Size(85, 13)
+        Me.lblPathScan.TabIndex = 51
+        Me.lblPathScan.Text = "Путь сканенра:"
+        '
+        'btnLoadScaner
+        '
+        Me.btnLoadScaner.Location = New System.Drawing.Point(583, 22)
+        Me.btnLoadScaner.Name = "btnLoadScaner"
+        Me.btnLoadScaner.Size = New System.Drawing.Size(75, 23)
+        Me.btnLoadScaner.TabIndex = 53
+        Me.btnLoadScaner.Text = "Перейти"
+        Me.btnLoadScaner.UseVisualStyleBackColor = True
+        '
+        'txtScanerPath
+        '
+        Me.txtScanerPath.Location = New System.Drawing.Point(103, 24)
+        Me.txtScanerPath.Name = "txtScanerPath"
+        Me.txtScanerPath.Size = New System.Drawing.Size(476, 20)
+        Me.txtScanerPath.TabIndex = 54
         '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(754, 558)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.txtScanerPath)
+        Me.Controls.Add(Me.btnLoadScaner)
+        Me.Controls.Add(Me.lblPathScan)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lbl_CurrentImage)
         Me.Controls.Add(Me.cmd_MoveDown)
@@ -478,6 +498,7 @@ Partial Class frm_Main
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents Timer3 As System.Windows.Forms.Timer
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-
+    Friend WithEvents lblPathScan As System.Windows.Forms.Label
+    Friend WithEvents btnLoadScaner As Button
+    Friend WithEvents txtScanerPath As System.Windows.Forms.TextBox
 End Class

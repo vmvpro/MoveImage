@@ -260,14 +260,13 @@ Module Functions
 
         If Environment.UserName = "Vetal" Then
             path_Scaner = "E:\Document\Мои рисунки\"
-            path_SaveDocuments = "d:\TestMoveImage\"
-            path_DataBase = "d:\Doc\Work\Работа\База данных\TestBD\"
-        Else
-
+            path_SaveDocuments = "d:\Doc\Work\1_MyApplication\MoveImage\MoveImage (Git)\0_DirectoryFilesTestMoveImage\"
+            path_DataBase = "d:\Doc\Work\Работа\База данных\TestDB\"
+        ElseIf Environment.UserName = "MWW54001_" Then
             path_Scaner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\"
             path_SaveDocuments = "\\erp\0_\0_App\540\"
             path_DataBase = "\\erp\0_\0_App\DataBaseAccess\DataBase\"
-
+        Else
             'sr = New StreamReader("Path.dat")
 
             'path_Scaner = sr.ReadLine()
@@ -275,6 +274,7 @@ Module Functions
             'path_DataBase = sr.ReadLine()
 
             'sr.Close()
+            
         End If
 
         'Public path_Scaner As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
