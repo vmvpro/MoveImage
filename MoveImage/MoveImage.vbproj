@@ -36,9 +36,10 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\MoveImageExe\Debug\</OutputPath>
     <DocumentationFile>MoveImage.xml</DocumentationFile>
     <NoWarn>42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DefineConstants>DebugMode</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

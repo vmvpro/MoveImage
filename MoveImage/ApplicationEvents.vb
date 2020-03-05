@@ -1,4 +1,5 @@
-﻿Namespace My
+﻿
+Namespace My
 
     ' Для MyApplication имеются следующие события:
     ' 
@@ -10,7 +11,12 @@
     Partial Friend Class MyApplication
         Protected Overrides Function OnStartup(eventArgs As ApplicationServices.StartupEventArgs) As Boolean
 
+#If Not DebugMode Then
             frm_Screensaver.ShowDialog()
+#End If
+
+
+
 
             Return MyBase.OnStartup(eventArgs)
 

@@ -189,9 +189,9 @@ Public Class frm_SaveDoc
             cbx_TypeDoc.Enabled = False
         End Try
 
-        If (Debugger.IsAttached) Then
-            Debugger.Break()
-        End If
+        'If (Debugger.IsAttached) Then
+        '    Debugger.Break()
+        'End If
 
 		'If cbx_GroupDoc.Text = "Техническая" Then
 		'cmd_SectorShow.Enabled = True

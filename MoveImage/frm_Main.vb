@@ -14,6 +14,7 @@ Public Class frm_Main
 
     Private Sub LoadScaner(sender As Object, e As EventArgs) Handles MyBase.Load, btnLoadScaner.Click
 
+
         Me.Height = SystemInformation.PrimaryMonitorSize.Height
         Me.Width = SystemInformation.PrimaryMonitorSize.Width
 
@@ -23,7 +24,11 @@ Public Class frm_Main
         If isLoadFromFile = False Then
             LoadFromPathFile()
             txtScanerPath.Text = path_Scaner
+            subEnabled_Buttons(cmd_MoveUp, cmd_MoveDown, cmd_NextStep, False)
         Else
+            If (Not Strings.Right(Strings.Trim(txtScanerPath.Text), 1) = "\") Then
+                txtScanerPath.Text += "\"
+            End If
 
             path_Scaner = txtScanerPath.Text
             If Not Directory.Exists(path_Scaner) Then
@@ -36,9 +41,10 @@ Public Class frm_Main
 
 
 
-        subEnabled_Buttons(cmd_MoveUp, cmd_MoveDown, cmd_NextStep, False)
+
 
         Try
+            isLoadFromFile = True
 
             di_Scaner = New DirectoryInfo(path_Scaner)
             fs_Scaner = di_Scaner.GetDirectories()
@@ -221,12 +227,9 @@ Public Class frm_Main
         ' Заполнение каждого ListBox-a, соответственно по расширению файла
         For Each currentFile As FileSystemInfo In fs_SelectedListFolder
 
-            If currentFile.Extension = ".JPG" Or currentFile.Extension = ".jpg" Then
-                lst_Jpg.Items.Add(currentFile)
-                Count += 1
-            End If
+            Dim lisExt As New List(Of String) From {".JPG", ".JPEG", ".TIF", ".TIFF"}  '".PDF"
 
-            If currentFile.Extension = ".TIF" Or currentFile.Extension = ".tif" Then
+            If lisExt.Contains(currentFile.Extension.ToUpper) Then
                 lst_Jpg.Items.Add(currentFile)
                 Count += 1
             End If
