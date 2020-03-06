@@ -74,10 +74,11 @@ Public Class frm_SaveDoc
 
 		statusStripLabel.Text = status
 		cmd_SectorShow.Enabled = False
-
-		Me.Height = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height
+#If Not DebugMode Then
+        Me.Height = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height
 		Me.Width = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width
-
+#End If
+		
 		cmd_PreViem.Enabled = False
 		cmd_SaveDoc.Enabled = False
 

@@ -258,11 +258,11 @@ Module Functions
             'sw.Close()
         End If
 
-        If Environment.UserName.ToUpper() = "Vetal" Then
+        If Environment.UserName.ToLower() = "vetal" Then
             path_Scaner = "E:\Document\Мои рисунки\"
             path_SaveDocuments = "d:\Doc\Work\1_MyApplication\MoveImage\MoveImage (Git)\0_DirectoryFilesTestMoveImage\"
             path_DataBase = "d:\Doc\Work\Работа\База данных\TestDB\"
-        ElseIf Environment.UserName.ToUpper() = "MWW54001" Then
+        ElseIf Environment.UserName.ToLower() = "mww54001" Then
             path_Scaner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\"
             path_SaveDocuments = "\\erp\0_\0_App\540\"
             path_DataBase = "\\erp\0_\0_App\DataBaseAccess\DataBase\"

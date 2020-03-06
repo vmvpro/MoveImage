@@ -12,11 +12,14 @@ Public Class frm_Main
 
     Dim isLoadFromFile = False
 
-    Private Sub LoadScaner(sender As Object, e As EventArgs) Handles MyBase.Load, btnLoadScaner.Click
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load, btnLoadScaner.Click
 
-
+#If Not DebugMode Then
         Me.Height = SystemInformation.PrimaryMonitorSize.Height
         Me.Width = SystemInformation.PrimaryMonitorSize.Width
+#End If
+
+
 
         Dim currentFile As FileSystemInfo
         Dim Count As Integer = 0
@@ -71,42 +74,12 @@ Public Class frm_Main
             subCountImageInfo(Count, lbl_CountScanner, enDirectoryName.Scaner)
         Catch ex As Exception
 
-            MsgBox("Укажите пожалуйста путь к папке, где находятся изображения.", MsgBoxStyle.Information, "Неверный путь к папке")
-            path_Scaner = FolderBrowserDialog1.SelectedPath & "\"
-
-            Dim Result As Integer = FolderBrowserDialog1.ShowDialog    'OpenFileDialog1.ShowDialog()
-
-            If Not Result = DialogResult.OK Then Exit Sub
-
-            path_Scaner = FolderBrowserDialog1.SelectedPath & "\"
-
-            di_Scaner = New DirectoryInfo(path_Scaner)
-            fs_Scaner = di_Scaner.GetDirectories()
-
-            If (Debugger.IsAttached) Then
-                Debugger.Break()
-            End If
-
-            Label3.Text = di_Scaner.Name
-
-            Label6.Text = "Имя папки: " & di_Scaner.Name
-            lst_Jpg.Items.Clear()
-
-            For Each currentFile In fs_Scaner
-
-                lst_Scaner.Items.Add(currentFile.Name)
-                Count += 1
-
-            Next
-            lst_Scaner.Sorted = True
-
-            subCountImageInfo(Count, lbl_CountScanner, enDirectoryName.Scaner)
         End Try
 
         InitialDAO()
 
 
-        frm_Info.ShowDialog()
+        'frm_Info.ShowDialog()
 
         BackgroundWorker1.RunWorkerAsync()
 
