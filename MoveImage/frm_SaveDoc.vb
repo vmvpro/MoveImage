@@ -601,11 +601,12 @@ Public Class frm_SaveDoc
 
 
 		For i As Integer = 1 To ListSelectedFiles.Count
-			nameImage = fileName & suffixText & " _" & Format(i, "00")
+
 
             Dim file = ListSelectedFiles(i - 1)
+            nameImage = fileName & suffixText & " _" & Format(i, "00")
 
-            nameImage = fileName & suffixText & file.Extension
+            nameImage = nameImage & file.Extension
 
             listBox_ShowImages.Items.Add(nameImage)
             ListFilesSave.Add(nameImage)
