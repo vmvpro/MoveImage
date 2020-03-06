@@ -6,10 +6,10 @@ Imports System.Text.RegularExpressions.Regex
 <Serializable>
 Public MustInherit Class cls_TypeDoc
 
-	''' <summary>
-	''' Путь к папке, где находится база данных "z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\BD\"
-	''' </summary>
-	''' <remarks></remarks>
+    ''' <summary>
+    ''' Путь к папке, где находится база данных "z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\BD\"
+    ''' </summary>
+    ''' <remarks></remarks>
     Protected Shared path_DataBase As String
 
     Protected Shared tag As String = "Проверьте правильность написания Тег-а." & vbNewLine & _
@@ -21,161 +21,148 @@ Public MustInherit Class cls_TypeDoc
     'Protected path_DataBase As String = "z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\BD\"
 
     Shared Sub New()
-        If Environment.UserName = "Vetal" Then
-            'path_Scaner = "E:\Document\Мои рисунки\"
-            'path_SaveDocuments = "d:\TestMoveImage\"
-            cls_TypeDoc.path_DataBase = "d:\Doc\Work\Работа\База данных\TestBD\"
-        Else
-            'Dim sr As StreamReader = New StreamReader("Path.dat")
 
-            'path_Scaner = sr.ReadLine()
-            'sr.ReadLine()
-            'sr.ReadLine()
-            'path_SaveDocuments = sr.ReadLine()
-            cls_TypeDoc.path_DataBase = "\\erp\0_\0_App\DataBaseAccess\DataBase\"
-            'sr.ReadLine()
+        cls_TypeDoc.path_DataBase = InitializationApp.path_DataBase
 
-            'sr.Close()
-        End If
     End Sub
 
 
-	''' <summary>
+    ''' <summary>
     ''' Загрузка в comboBox данных из таблицы RegisterDoc по критерию типа документа 
-	''' </summary>
-	''' <param name="id_rz_register_doc"></param>
-	''' <param name="type_doc"></param>
-	''' <remarks></remarks>
-	Protected Sub load_RegisterDocParametr(id_rz_register_doc As ComboBox, type_doc As String)
-		Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
-			{
-				.Provider = "Microsoft.ACE.OLEDB.12.0",
-				.DataSource = IO.Path.Combine(cls_TypeDoc.path_DataBase, "ServerDBNew.accdb")
-			}
+    ''' </summary>
+    ''' <param name="id_rz_register_doc"></param>
+    ''' <param name="type_doc"></param>
+    ''' <remarks></remarks>
+    Protected Sub load_RegisterDocParametr(id_rz_register_doc As ComboBox, type_doc As String)
+        Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
+            {
+                .Provider = "Microsoft.ACE.OLEDB.12.0",
+                .DataSource = IO.Path.Combine(cls_TypeDoc.path_DataBase, "ServerDBNew.accdb")
+            }
 
-		'.DataSource = IO.Path.Combine(Application.StartupPath, "MoveImageDB.accdb")
+        '.DataSource = IO.Path.Combine(Application.StartupPath, "MoveImageDB.accdb")
 
-		Dim dt As New DataTable
-		Using cn As New OleDb.OleDbConnection With
-			{
-				.ConnectionString = BuilderAccdb.ConnectionString
-			}
+        Dim dt As New DataTable
+        Using cn As New OleDb.OleDbConnection With
+        {
+            .ConnectionString = BuilderAccdb.ConnectionString
+        }
 
-			Using cmd As New OleDb.OleDbCommand With
-				{
-					.Connection = cn,
-					.CommandText = "SELECT * FROM Register_Doc Where type = '" & type_doc & "' Order By num_doc"
-				}
+            Using cmd As New OleDb.OleDbCommand With
+            {
+                .Connection = cn,
+                .CommandText = "SELECT * FROM Register_Doc Where type = '" & type_doc & "' Order By num_doc"
+            }
 
-				'.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
+                '.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
 
-				cn.Open()
-				dt.Load(cmd.ExecuteReader)
+                cn.Open()
+                dt.Load(cmd.ExecuteReader)
 
-				Dim all As DataRow = dt.NewRow
-				all.SetField(Of String)("num_doc", "")
-				all.SetField(Of Integer)("id", 0)
-				dt.Rows.InsertAt(all, 0)
-				dt.AcceptChanges()
+                Dim all As DataRow = dt.NewRow
+                all.SetField(Of String)("num_doc", "")
+                all.SetField(Of Integer)("id", 0)
+                dt.Rows.InsertAt(all, 0)
+                dt.AcceptChanges()
 
-			End Using
-		End Using
+            End Using
+        End Using
 
-		id_rz_register_doc.DataSource = dt
+        id_rz_register_doc.DataSource = dt
 
-		id_rz_register_doc.DisplayMember = "num_doc"
-		id_rz_register_doc.ValueMember = "id"
-	End Sub
+        id_rz_register_doc.DisplayMember = "num_doc"
+        id_rz_register_doc.ValueMember = "id"
+    End Sub
 
 #Region "    Загрузка департаментов в comboBox dep_zp"
 
-	Protected Sub load_AntonovDep(pathFolderDataBase As String, cboAntonovDep As ComboBox)
-		Dim query As String = "SELECT dop_AntonovDep.dep_name " & _
-							  "FROM dop_AntonovDep " & _
-							  "ORDER BY dop_AntonovDep.index, dop_AntonovDep.dep_name;"
+    Protected Sub load_AntonovDep(pathFolderDataBase As String, cboAntonovDep As ComboBox)
+        Dim query As String = "SELECT dop_AntonovDep.dep_name " & _
+                              "FROM dop_AntonovDep " & _
+                              "ORDER BY dop_AntonovDep.index, dop_AntonovDep.dep_name;"
 
-		Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
-			{
-				.Provider = "Microsoft.ACE.OLEDB.12.0",
-				.DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
-			}
+        Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
+            {
+                .Provider = "Microsoft.ACE.OLEDB.12.0",
+                .DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
+            }
 
-		Dim dt As New DataTable
-		Using cn As New OleDb.OleDbConnection With
-			{
-				.ConnectionString = BuilderAccdb.ConnectionString
-			}
+        Dim dt As New DataTable
+        Using cn As New OleDb.OleDbConnection With
+            {
+                .ConnectionString = BuilderAccdb.ConnectionString
+            }
 
-			Using cmd As New OleDb.OleDbCommand With
-				{
-					.Connection = cn,
-					.CommandText = query
-				}
+            Using cmd As New OleDb.OleDbCommand With
+                {
+                    .Connection = cn,
+                    .CommandText = query
+                }
 
-				'.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
+                '.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
 
-				cn.Open()
-				dt.Load(cmd.ExecuteReader)
+                cn.Open()
+                dt.Load(cmd.ExecuteReader)
 
-			End Using
-		End Using
+            End Using
+        End Using
 
-		cboAntonovDep.DataSource = dt
+        cboAntonovDep.DataSource = dt
 
-		cboAntonovDep.DisplayMember = "dep_name"
-		cboAntonovDep.ValueMember = "dep_name"
+        cboAntonovDep.DisplayMember = "dep_name"
+        cboAntonovDep.ValueMember = "dep_name"
 
-	End Sub
+    End Sub
 
 #End Region
 
 #Region "    Загрузка изделий в comboBox izd"
 
-	Protected Sub load_izd(pathFolderDataBase As String, cboAntonovDep As ComboBox)
-		Dim query As String = "SELECT dop_Izdelia.izd, dop_Izdelia.index, * " & _
-							  "FROM dop_Izdelia " & _
-							  "WHERE (((dop_Izdelia.izd) Not In ('КОС','Указать'))) " & _
-							  "ORDER BY dop_Izdelia.index; "
+    Protected Sub load_izd(pathFolderDataBase As String, cboAntonovDep As ComboBox)
+        Dim query As String = "SELECT dop_Izdelia.izd, dop_Izdelia.index, * " & _
+                              "FROM dop_Izdelia " & _
+                              "WHERE (((dop_Izdelia.izd) Not In ('КОС','Указать'))) " & _
+                              "ORDER BY dop_Izdelia.index; "
 
 
-		Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
-			{
-				.Provider = "Microsoft.ACE.OLEDB.12.0",
-				.DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
-			}
+        Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
+            {
+                .Provider = "Microsoft.ACE.OLEDB.12.0",
+                .DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
+            }
 
-		Dim dt As New DataTable
-		Using cn As New OleDb.OleDbConnection With
-			{
-				.ConnectionString = BuilderAccdb.ConnectionString
-			}
+        Dim dt As New DataTable
+        Using cn As New OleDb.OleDbConnection With
+            {
+                .ConnectionString = BuilderAccdb.ConnectionString
+            }
 
-			Using cmd As New OleDb.OleDbCommand With
-				{
-					.Connection = cn,
-					.CommandText = query
-				}
+            Using cmd As New OleDb.OleDbCommand With
+                {
+                    .Connection = cn,
+                    .CommandText = query
+                }
 
-				'.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
+                '.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
 
-				cn.Open()
-				dt.Load(cmd.ExecuteReader)
+                cn.Open()
+                dt.Load(cmd.ExecuteReader)
 
-			End Using
-		End Using
+            End Using
+        End Using
 
-		cboAntonovDep.DataSource = dt
+        cboAntonovDep.DataSource = dt
 
-		cboAntonovDep.DisplayMember = "izd"
-		cboAntonovDep.ValueMember = "izd"
+        cboAntonovDep.DisplayMember = "izd"
+        cboAntonovDep.ValueMember = "izd"
 
-	End Sub
+    End Sub
 
 #End Region
 
 #Region "    Загрузка шифра изделий в документе в comboBox izd_shifr"
 
-	Protected Sub load_izd_shifr(pathFolderDataBase As String, cboAntonovDep As ComboBox)
+    Protected Sub load_izd_shifr(pathFolderDataBase As String, cboAntonovDep As ComboBox)
         Dim query As String = "SELECT dop_Izdelia.izd, dop_Izdelia.index " & _
                               "FROM dop_Izdelia " & _
                               "WHERE (((dop_Izdelia.izd) Not In " & _
@@ -183,87 +170,87 @@ Public MustInherit Class cls_TypeDoc
                               "'158/178', '132/178', '148/158','Указать','КОС'))) " & _
                               "ORDER BY dop_Izdelia.index;"
 
-		Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
-			{
-				.Provider = "Microsoft.ACE.OLEDB.12.0",
-				.DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
-			}
+        Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
+            {
+                .Provider = "Microsoft.ACE.OLEDB.12.0",
+                .DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
+            }
 
-		Dim dt As New DataTable
-		Using cn As New OleDb.OleDbConnection With
-			{
-				.ConnectionString = BuilderAccdb.ConnectionString
-			}
+        Dim dt As New DataTable
+        Using cn As New OleDb.OleDbConnection With
+            {
+                .ConnectionString = BuilderAccdb.ConnectionString
+            }
 
-			Using cmd As New OleDb.OleDbCommand With
-				{
-					.Connection = cn,
-					.CommandText = query
-				}
+            Using cmd As New OleDb.OleDbCommand With
+                {
+                    .Connection = cn,
+                    .CommandText = query
+                }
 
-				'.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
+                '.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
 
-				cn.Open()
-				dt.Load(cmd.ExecuteReader)
+                cn.Open()
+                dt.Load(cmd.ExecuteReader)
 
-			End Using
-		End Using
+            End Using
+        End Using
 
-		cboAntonovDep.DataSource = dt
+        cboAntonovDep.DataSource = dt
 
-		cboAntonovDep.DisplayMember = "izd"
-		cboAntonovDep.ValueMember = "izd"
+        cboAntonovDep.DisplayMember = "izd"
+        cboAntonovDep.ValueMember = "izd"
 
-	End Sub
+    End Sub
 
 #End Region
 
 #Region "    Загрузка шифра изделий в документе в comboBox izd_shifr"
 
-	Protected Function load_izd_shifr_(pathFolderDataBase As String, DisplayMember As String, ValueMember As String) As ComboBox
-		Dim cboAntonovDep As New ComboBox
+    Protected Function load_izd_shifr_(pathFolderDataBase As String, DisplayMember As String, ValueMember As String) As ComboBox
+        Dim cboAntonovDep As New ComboBox
 
-		Dim query As String = "SELECT dop_Izdelia.izd, dop_Izdelia.index " & _
-							  "FROM dop_Izdelia " & _
-							  "WHERE (((dop_Izdelia.izd) Not In " & _
-							  "('24/26', '32/132', '148/178', '148/158/178', " & _
-							  "'158/178', '132/178', '148/158','Указать','КОС'))) " & _
-							  "ORDER BY dop_Izdelia.index;"
+        Dim query As String = "SELECT dop_Izdelia.izd, dop_Izdelia.index " & _
+                              "FROM dop_Izdelia " & _
+                              "WHERE (((dop_Izdelia.izd) Not In " & _
+                              "('24/26', '32/132', '148/178', '148/158/178', " & _
+                              "'158/178', '132/178', '148/158','Указать','КОС'))) " & _
+                              "ORDER BY dop_Izdelia.index;"
 
-		Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
-			{
-				.Provider = "Microsoft.ACE.OLEDB.12.0",
-				.DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
-			}
+        Dim BuilderAccdb As New OleDb.OleDbConnectionStringBuilder With
+            {
+                .Provider = "Microsoft.ACE.OLEDB.12.0",
+                .DataSource = IO.Path.Combine(pathFolderDataBase, "ServerDBNew.accdb")
+            }
 
-		Dim dt As New DataTable
-		Using cn As New OleDb.OleDbConnection With
-			{
-				.ConnectionString = BuilderAccdb.ConnectionString
-			}
+        Dim dt As New DataTable
+        Using cn As New OleDb.OleDbConnection With
+            {
+                .ConnectionString = BuilderAccdb.ConnectionString
+            }
 
-			Using cmd As New OleDb.OleDbCommand With
-				{
-					.Connection = cn,
-					.CommandText = query
-				}
+            Using cmd As New OleDb.OleDbCommand With
+                {
+                    .Connection = cn,
+                    .CommandText = query
+                }
 
-				'.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
+                '.CommandText = "SELECT id, type_doc & '' & '1' as type_doc , prim, index FROM dop_Type_Doc"
 
-				cn.Open()
-				dt.Load(cmd.ExecuteReader)
+                cn.Open()
+                dt.Load(cmd.ExecuteReader)
 
-			End Using
-		End Using
+            End Using
+        End Using
 
-		cboAntonovDep.DataSource = dt
+        cboAntonovDep.DataSource = dt
 
-		cboAntonovDep.DisplayMember = DisplayMember
-		cboAntonovDep.ValueMember = ValueMember
+        cboAntonovDep.DisplayMember = DisplayMember
+        cboAntonovDep.ValueMember = ValueMember
 
-		Return cboAntonovDep
+        Return cboAntonovDep
 
-	End Function
+    End Function
 
 #End Region
 
@@ -306,16 +293,16 @@ Public MustInherit Class cls_TypeDoc
     ''' Признак сохранения в базу данных
     ''' </summary>
     ''' <remarks></remarks>
-	Protected boolDataBase As Boolean
+    Protected boolDataBase As Boolean
 
-	''' <summary>
-	''' Функция предназначена для определения, сохранении в базу данных
-	''' </summary>
-	''' <returns></returns>
-	''' <remarks></remarks>
-	Public Function IsSaveDataBase() As Boolean
-		Return boolDataBase
-	End Function
+    ''' <summary>
+    ''' Функция предназначена для определения, сохранении в базу данных
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function IsSaveDataBase() As Boolean
+        Return boolDataBase
+    End Function
 
     ''' <summary>
     ''' Процедура для ввода и форматирования полей для каждого конкретного класса
@@ -357,6 +344,6 @@ Public MustInherit Class cls_TypeDoc
 
 
     'Public MustOverride Function OpenRecordset(db As Object) As Object
-        'Public MustOverride Sub SaveDataBaseCurrentClass(dbe As Object, s() As String, ListFilesSave As ArrayList)
+    'Public MustOverride Sub SaveDataBaseCurrentClass(dbe As Object, s() As String, ListFilesSave As ArrayList)
 
 End Class

@@ -95,17 +95,20 @@ Public Class frm_SaveDoc
 		listBox_ShowImages.Items.Clear()
 		ListFilesSave.Clear()
 
-		Dim s As String
+
 		Dim i As Integer
 
-		For Each s In ListSelectedFiles
+        For Each _file In ListSelectedFiles
 
-			i = s.LastIndexOf("\") + 2
-			s = Mid(s, i, 20).Trim
+            'Dim _fileInfo As New FileInfo(s)
 
-			listBox_ShowImages.Items.Add(s)
+            listBox_ShowImages.Items.Add(_file.Name)
 
-		Next
+            'i = s.LastIndexOf("\") + 2
+            's = Mid(s, i, 20).Trim
+            'listBox_ShowImages.Items.Add(s)
+
+        Next
 		cbx_GroupDoc.Text = "Выберите группу документа"
 		cbx_TypeDoc.Text = "Выберите тип документа"
 
@@ -539,7 +542,8 @@ Public Class frm_SaveDoc
         If ListSelectedFiles.Count = 1 Then
             Do
 				nameImage = fileName & suffixText
-				Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
+                'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
+                Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ListSelectedFiles(0).Extension
                 If (File.Exists(pathFile)) Then
                     suffixIndex += 1
                     suffixText = "(" & suffixIndex & ")"
@@ -559,7 +563,8 @@ Public Class frm_SaveDoc
 			For i As Integer = 1 To ListSelectedFiles.Count
 				nameImage = fileName & suffixText & " _" & Format(i, "00")
 
-				Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
+                'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
+                Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ListSelectedFiles(i - 1).Extension
 				If (File.Exists(pathFile)) Then
 					suffixIndex += 1
 					suffixText = "(" & suffixIndex & ")"
@@ -578,10 +583,17 @@ Public Class frm_SaveDoc
 		'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & ListSelectedFiles
 
 		If ListSelectedFiles.Count = 1 Then
-			nameImage = fileName & suffixText
 
-			listBox_ShowImages.Items.Add(nameImage & ".jpg")
-			ListFilesSave.Add(nameImage & ".jpg")
+            Dim file = ListSelectedFiles(0)
+            'Dim _fileName = Strings.Left(file.Name, file.Name.Length - file.Extension.Length + 1)
+
+            nameImage = fileName & suffixText & file.Extension
+
+            listBox_ShowImages.Items.Add(nameImage)
+            ListFilesSave.Add(nameImage)
+
+            'listBox_ShowImages.Items.Add(nameImage)
+            'ListFilesSave.Add(nameImage & ".jpg")
 
 			Exit Sub
 		End If
@@ -591,8 +603,17 @@ Public Class frm_SaveDoc
 		For i As Integer = 1 To ListSelectedFiles.Count
 			nameImage = fileName & suffixText & " _" & Format(i, "00")
 
-			listBox_ShowImages.Items.Add(nameImage & ".jpg")
-			ListFilesSave.Add(nameImage & ".jpg")
+            Dim file = ListSelectedFiles(i - 1)
+
+            nameImage = fileName & suffixText & file.Extension
+
+            listBox_ShowImages.Items.Add(nameImage)
+            ListFilesSave.Add(nameImage)
+
+            'listBox_ShowImages.Items.Add(nameImage & ".jpg")
+            'ListFilesSave.Add(nameImage & ".jpg")
+
+
 		Next
 
 

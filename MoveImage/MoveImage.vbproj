@@ -194,7 +194,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mdl_WorkDataBase.vb" />
-    <Compile Include="Module\DeclareVariable.vb" />
+    <Compile Include="Module\InitializationApp.vb" />
     <Compile Include="frm_Main.vb">
       <SubType>Form</SubType>
     </Compile>

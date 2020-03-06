@@ -102,12 +102,13 @@ Module Functions
             Dim index As Integer = listBox_SelectedImages.SelectedIndex
 
             Dim x As Object = listBox_SelectedImages.Items(index)
-            Dim s As String = ListSelectedFiles.Item(index)
+            Dim _file = ListSelectedFiles.Item(index)
+
 
             ListSelectedFiles.Item(index) = ListSelectedFiles.Item(index + move)
             listBox_SelectedImages.Items(index) = listBox_SelectedImages.Items(index + move)
 
-            ListSelectedFiles.Item(index + move) = s
+            ListSelectedFiles.Item(index + move) = _file
             listBox_SelectedImages.Items(index + move) = x
 
             listBox_SelectedImages.SelectedIndex = index + move
@@ -145,36 +146,35 @@ Module Functions
     ''' <param name="ListSelectedFiles">Полный путь картинок картинок  с папки Сканер</param>
     ''' <param name="dirNameSave">Конечная папка конкретного документа на сервере</param>
     ''' <remarks></remarks>
-	Sub SaveImagesEndPath(ListSelectedFiles As ArrayList, dirNameSave As String)
-		Dim k As Integer = 0
-		Try
-			For Each s As String In ListFilesSave
-				Dim temp As String = dirNameSave & "\" & ListFilesSave(k).ToString
+    Sub SaveImagesEndPath(ListSelectedFiles As List(Of FileInfo), dirNameSave As String)
+        Dim k As Integer = 0
+        Try
+            For Each s In ListFilesSave
+                Dim temp As String = dirNameSave & "\" & ListFilesSave(k).ToString
+
+                Dim drInfo1 As DirectoryInfo = New DirectoryInfo(temp)
+                Dim drInfo2 As DirectoryInfo = New DirectoryInfo(ListSelectedFiles(k).ToString)
+
+                File.Copy(ListSelectedFiles(k).ToString, temp)
+                k += 1
+
+                My.Computer.FileSystem.RenameFile(drInfo2.FullName, drInfo1.Name)
 
 
-				Dim drInfo1 As DirectoryInfo = New DirectoryInfo(temp)
-				Dim drInfo2 As DirectoryInfo = New DirectoryInfo(ListSelectedFiles(k).ToString)
+            Next
+        Catch ex As Exception
+            For iss As Integer = k To ListFilesSave.Count - 1
 
-				File.Copy(ListSelectedFiles(k).ToString, temp)
-				k += 1
+                Dim temp As String = dirNameSave & "\" & ListFilesSave(iss).ToString
 
-				My.Computer.FileSystem.RenameFile(drInfo2.FullName, drInfo1.Name)
+                Dim drInfo1 As DirectoryInfo = New DirectoryInfo(temp)
+                Dim drInfo2 As DirectoryInfo = New DirectoryInfo(ListSelectedFiles(iss).ToString)
 
+                File.Copy(ListSelectedFiles(iss).ToString, temp)
 
-			Next
-		Catch ex As Exception
-			For iss As Integer = k To ListFilesSave.Count - 1
+            Next
+        End Try
 
-				Dim temp As String = dirNameSave & "\" & ListFilesSave(iss).ToString
-
-				Dim drInfo1 As DirectoryInfo = New DirectoryInfo(temp)
-				Dim drInfo2 As DirectoryInfo = New DirectoryInfo(ListSelectedFiles(iss).ToString)
-
-				File.Copy(ListSelectedFiles(iss).ToString, temp)
-
-			Next
-		End Try
-		
     End Sub
 
     ''' <summary>
@@ -234,50 +234,6 @@ Module Functions
                             "При этой ошибке сообщите Администратору Базы данных!" & Environment.NewLine & _
                             "Спасибо", "Ошибка")
         End Try
-    End Sub
-
-    ''' <summary>
-    ''' Загрузка путей из файла для, где находятся изображения сканера и по какому относительному пути будет все соранятся
-    ''' </summary>
-    ''' <remarks></remarks>
-    Sub LoadFromPathFile()
-        Dim sw As StreamWriter
-        Dim sr As StreamReader
-
-        If Not File.Exists("Path.dat") Then
-            'sw = New StreamWriter("Path.dat")
-            'sw.WriteLine("Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\")
-            'sw.WriteLine("Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\")
-            'sw.WriteLine("z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\BD\")
-
-            'sw.WriteLine("Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\Сканер\")
-            'sw.WriteLine("\\erp\0_\0_App\DataBaseAccess\")
-            'sw.WriteLine("\\erp\0_\0_App\DataBaseAccess\DataBase\")
-
-			'sw.WriteLine("Z:\023 Цех23\ТБ\_ОБЩАЯ ПАПКА\База данных ТБ Ц23\2_Техническая документация\")
-            'sw.Close()
-        End If
-
-        If Environment.UserName.ToLower() = "vetal" Then
-            path_Scaner = "E:\Document\Мои рисунки\"
-            path_SaveDocuments = "d:\Doc\Work\1_MyApplication\MoveImage\MoveImage (Git)\0_DirectoryFilesTestMoveImage\"
-            path_DataBase = "d:\Doc\Work\Работа\База данных\TestDB\"
-        ElseIf Environment.UserName.ToLower() = "mww54001" Then
-            path_Scaner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\"
-            path_SaveDocuments = "\\erp\0_\0_App\540\"
-            path_DataBase = "\\erp\0_\0_App\DataBaseAccess\DataBase\"
-        Else
-            sr = New StreamReader("Path.dat")
-
-            path_Scaner = sr.ReadLine()
-            path_SaveDocuments = sr.ReadLine()
-            path_DataBase = sr.ReadLine()
-
-            sr.Close()
-
-        End If
-
-        'Public path_Scaner As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
     End Sub
 
 End Module

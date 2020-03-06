@@ -122,7 +122,7 @@ Public Class frm_Main
 
             If listBox.Items.Count = 0 Then Exit Sub
 
-            ListSelectedFiles.Add(fullNamePathImage)
+            ListSelectedFiles.Add(New FileInfo(fullNamePathImage))
 
             listBox_Selected.Items.Add(listBox.SelectedItem)
 
@@ -200,7 +200,7 @@ Public Class frm_Main
         ' Заполнение каждого ListBox-a, соответственно по расширению файла
         For Each currentFile As FileSystemInfo In fs_SelectedListFolder
 
-            Dim lisExt As New List(Of String) From {".JPG", ".JPEG", ".TIF", ".TIFF"}  '".PDF"
+            Dim lisExt As New List(Of String) From {".JPG", ".JPEG", ".TIF", ".TIFF", ".PDF"}
 
             If lisExt.Contains(currentFile.Extension.ToUpper) Then
                 lst_Jpg.Items.Add(currentFile)
@@ -273,7 +273,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub mnc_Delete_Click(sender As Object, e As EventArgs) Handles mnc_Delete.Click
-        Dim s As String, i As Integer = 0
+        Dim i As Integer = 0
         Try
             If lst_SelectedImages.SelectedIndex = -1 Then Exit Sub
 
@@ -284,11 +284,11 @@ Public Class frm_Main
             If ListSelectedFiles.Count = 0 Then
                 subEnabled_Buttons(cmd_MoveUp, cmd_MoveDown, cmd_NextStep, False)
             Else
-                For Each s In ListSelectedFiles
+                For Each _file In ListSelectedFiles
 
-                    i = s.LastIndexOf("\") + 2
-                    s = Mid(s, i)
-                    lst_SelectedImages.Items.Add(s)
+                    'i = s.LastIndexOf("\") + 2
+                    's = Mid(s, i)
+                    lst_SelectedImages.Items.Add(_file.Name)
 
                 Next
             End If
@@ -492,10 +492,10 @@ Public Class frm_Main
         Dim DirInfo2() As String = CType(e.Data.GetData(DataFormats.FileDrop, False), String())
 
         For Each str As String In DirInfo2
-            ListSelectedFiles.Add(str)
+            ListSelectedFiles.Add(New FileInfo(str))
 
-            i = str.LastIndexOf("\") + 2
-            str = Mid(str, i, 20).Trim
+            'i = str.LastIndexOf("\") + 2
+            'str = Mid(str, i, 20).Trim
 
             lst_SelectedImages.Items.Add(str)
         Next
