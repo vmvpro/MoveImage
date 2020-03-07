@@ -11,7 +11,7 @@ Public Class frm_SaveDoc
 #Region "    Объявление переменных			"
     Dim a, b, c As String
     Dim CountImage As Integer = 0
-    Dim s() As String
+    Dim sector() As String
 
     Dim ListGroupDoc() As String = New String() {"Административная", "Техническая", "Технологическая"}
 
@@ -32,71 +32,71 @@ Public Class frm_SaveDoc
 
 #End Region
 
-	Function ListsClassesLoad(groupName As String) As List(Of cls_TypeDoc)
-		Dim NewClasses As New List(Of cls_TypeDoc)
-		Select Case groupName
-			Case "Административная"
-				'NewClasses = New List(Of cls_TypeDoc)() From {New cls_SZ}
-				'Dim ddd As New cls_ExecutiveOrder
+    Function ListsClassesLoad(groupName As String) As List(Of cls_TypeDoc)
+        Dim NewClasses As New List(Of cls_TypeDoc)
+        Select Case groupName
+            Case "Административная"
+                'NewClasses = New List(Of cls_TypeDoc)() From {New cls_SZ}
+                'Dim ddd As New cls_ExecutiveOrder
                 NewClasses = New List(Of cls_TypeDoc)() From {New cls_SZ, New cls_Akt,
                                                               New cls_ExecutiveOrder, New cls_ExecutiveOrder_UA,
                                                               New cls_Order, New cls_Order_UA, New cls_Protocol,
                                                               New cls_DZ}
 
-			Case "Техническая"
-				NewClasses = New List(Of cls_TypeDoc)() From {New cls_BPPP, New cls_SKN, New cls_VD,
-															  New cls_ZP, New cls_IZV, New cls_IZV_KOS,
-															  New cls_IZV_OIR, New cls_KTSP, New cls_LIR,
-															  New cls_NGO, New cls_PSO, New cls_RZ,
-															  New cls_USP, New cls_ZM}
+            Case "Техническая"
+                NewClasses = New List(Of cls_TypeDoc)() From {New cls_BPPP, New cls_SKN, New cls_VD,
+                                                              New cls_ZP, New cls_IZV, New cls_IZV_KOS,
+                                                              New cls_IZV_OIR, New cls_KTSP, New cls_LIR,
+                                                              New cls_NGO, New cls_PSO, New cls_RZ,
+                                                              New cls_USP, New cls_ZM}
 
-			Case "Технологическая"
-				NewClasses = New List(Of cls_TypeDoc)() From {New cls_Cherteg}
+            Case "Технологическая"
+                NewClasses = New List(Of cls_TypeDoc)() From {New cls_Cherteg}
 
-		End Select
+        End Select
 
-		Return NewClasses
-	End Function
+        Return NewClasses
+    End Function
 
 #Region "    Заполнение классов в список		"
 
-	'Dim ListClasses As List(Of cls_TypeDoc) = New List(Of cls_TypeDoc)() From {New cls_BPPP, New cls_SKN, New cls_VD,
-	'                                                                           New cls_ZP, New cls_IZV, New cls_IZV_KOS,
-	'                                                                           New cls_IZV_OIR, New cls_KTSP, New cls_LIR,
-	'                                                                           New cls_NGO, New cls_PSO, New cls_RZ,
-	'                                                                           New cls_USP, New cls_ZM, New cls_SZ}
+    'Dim ListClasses As List(Of cls_TypeDoc) = New List(Of cls_TypeDoc)() From {New cls_BPPP, New cls_SKN, New cls_VD,
+    '                                                                           New cls_ZP, New cls_IZV, New cls_IZV_KOS,
+    '                                                                           New cls_IZV_OIR, New cls_KTSP, New cls_LIR,
+    '                                                                           New cls_NGO, New cls_PSO, New cls_RZ,
+    '                                                                           New cls_USP, New cls_ZM, New cls_SZ}
 
 #End Region
 
-	Dim ListClasses As List(Of cls_TypeDoc)
-	Private Sub frm_SaveDoc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		'Array.Sort(ListTypeDoc)
+    Dim ListClasses As List(Of cls_TypeDoc)
+    Private Sub frm_SaveDoc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Array.Sort(ListTypeDoc)
 
-		statusStripLabel.Text = status
-		cmd_SectorShow.Enabled = False
+        statusStripLabel.Text = status
+        cmd_SectorShow.Enabled = False
 #If Not DebugMode Then
         Me.Height = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height
 		Me.Width = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width
 #End If
-		
-		cmd_PreViem.Enabled = False
-		cmd_SaveDoc.Enabled = False
 
-		cbx_TypeDoc.Items.Clear()
-		cbx_TypeDoc.Enabled = False
+        cmd_PreViem.Enabled = False
+        cmd_SaveDoc.Enabled = False
 
-		'For Each ss As cls_TypeDoc In ListClasses
-		'cbx_TypeDoc.Items.Add(ss.name)
-		'Next
+        cbx_TypeDoc.Items.Clear()
+        cbx_TypeDoc.Enabled = False
 
-		Panel1.Controls.Clear()
+        'For Each ss As cls_TypeDoc In ListClasses
+        'cbx_TypeDoc.Items.Add(ss.name)
+        'Next
 
-
-		listBox_ShowImages.Items.Clear()
-		ListFilesSave.Clear()
+        Panel1.Controls.Clear()
 
 
-		Dim i As Integer
+        listBox_ShowImages.Items.Clear()
+        ListFilesSave.Clear()
+
+
+        Dim i As Integer
 
         For Each _file In ListSelectedFiles
 
@@ -109,11 +109,11 @@ Public Class frm_SaveDoc
             'listBox_ShowImages.Items.Add(s)
 
         Next
-		cbx_GroupDoc.Text = "Выберите группу документа"
-		cbx_TypeDoc.Text = "Выберите тип документа"
+        cbx_GroupDoc.Text = "Выберите группу документа"
+        cbx_TypeDoc.Text = "Выберите тип документа"
 
-		listBox_ShowImages.SelectedIndex = 0
-	End Sub
+        listBox_ShowImages.SelectedIndex = 0
+    End Sub
 
     Function DBEngine777() As Object
         Dim dbe1 As Object   ' DAO.DBEngine
@@ -129,32 +129,32 @@ Public Class frm_SaveDoc
         'Return "test"
     End Function
 
-	' Происходит когда срабатывает метод BackgroundWorker1.RunWorkerAsync()
+    ' Происходит когда срабатывает метод BackgroundWorker1.RunWorkerAsync()
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
 
-		'ListClasses = ListsClassesLoad(cbx_GroupDoc.Text)
-		ListClasses = ListsClassesLoad(e.Argument.ToString)
+        'ListClasses = ListsClassesLoad(cbx_GroupDoc.Text)
+        ListClasses = ListsClassesLoad(e.Argument.ToString)
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         ProgressBar1.Visible = False
-		cbx_TypeDoc.Visible = True
+        cbx_TypeDoc.Visible = True
 
-		Try
-			'cbx_TypeDoc.Visible = False
-			'ProgressBar1.Visible = True
+        Try
+            'cbx_TypeDoc.Visible = False
+            'ProgressBar1.Visible = True
 
-			'BackgroundWorker1.RunWorkerAsync()
+            'BackgroundWorker1.RunWorkerAsync()
 
-			cmd_PreViem.Enabled = False
-			Panel1.Controls.Clear()
-			cbx_TypeDoc.Items.Clear()
-			'ListClasses = ListsClassesLoad(cbx_GroupDoc.Text)
+            cmd_PreViem.Enabled = False
+            Panel1.Controls.Clear()
+            cbx_TypeDoc.Items.Clear()
+            'ListClasses = ListsClassesLoad(cbx_GroupDoc.Text)
             ListClasses.Sort(Function(name1 As cls_TypeDoc, name2 As cls_TypeDoc) name1.type_doc.CompareTo(name2.type_doc))
 
             For Each ss As cls_TypeDoc In ListClasses
-				cbx_TypeDoc.Items.Add(ss.type_doc)
-				'cbx_TypeDoc.Items.AddRange(ss.type_docRange)
+                cbx_TypeDoc.Items.Add(ss.type_doc)
+                'cbx_TypeDoc.Items.AddRange(ss.type_docRange)
             Next
 
             cbx_TypeDoc.Enabled = True
@@ -183,8 +183,8 @@ Public Class frm_SaveDoc
             ListClasses.Sort(Function(name1 As cls_TypeDoc, name2 As cls_TypeDoc) name1.type_doc.CompareTo(name2.type_doc))
 
             For Each ss As cls_TypeDoc In ListClasses
-				'cbx_TypeDoc.Items.AddRange(ss.type_docRange)
-				cbx_TypeDoc.Items.Add(ss.type_doc)
+                'cbx_TypeDoc.Items.AddRange(ss.type_docRange)
+                cbx_TypeDoc.Items.Add(ss.type_doc)
             Next
 
             cbx_TypeDoc.Enabled = True
@@ -197,13 +197,13 @@ Public Class frm_SaveDoc
         '    Debugger.Break()
         'End If
 
-		'If cbx_GroupDoc.Text = "Техническая" Then
-		'cmd_SectorShow.Enabled = True
-		'End If
+        'If cbx_GroupDoc.Text = "Техническая" Then
+        'cmd_SectorShow.Enabled = True
+        'End If
 
     End Sub
 
-    
+
 
     Sub cmdEnabled(asd As Boolean)
         cmd_SaveDoc.Enabled = asd
@@ -302,7 +302,7 @@ Public Class frm_SaveDoc
                     Dim type_doc = cbx_TypeDoc.Text
                     Dim num_doc = currentSelectClass.GetNumDoc()
 
-                    currentSelectClass.SaveDataBaseCurrentClass(dbe, "ServerDBNew", type_doc, num_doc, s, ListFilesSave)
+                    currentSelectClass.SaveDataBaseCurrentClass(dbe, "ServerDBNew", type_doc, num_doc, sector, ListFilesSave)
                 End If
 
             End If
@@ -322,89 +322,89 @@ Public Class frm_SaveDoc
 
 #Region "    Кнопка предварительный просмотр				"
 
-	Private Sub cmd_PreViem_Click(sender As Object, e As EventArgs) Handles cmd_PreViem.Click
+    Private Sub cmd_PreViem_Click(sender As Object, e As EventArgs) Handles cmd_PreViem.Click
 
-		'DirectoryInfo di = new DirectoryInfo(@"d:\1_test");	' создаем каталог
+        'DirectoryInfo di = new DirectoryInfo(@"d:\1_test");	' создаем каталог
 
-		' ищем в каталоге папку под именем если таковая иммется переменной var 
-		' присваевается массив найденных папок тип переменной DirecoryInfo
-		'var d = di.EnumerateDirectories("СКН 53961*");			
+        ' ищем в каталоге папку под именем если таковая иммется переменной var 
+        ' присваевается массив найденных папок тип переменной DirecoryInfo
+        'var d = di.EnumerateDirectories("СКН 53961*");			
 
-		'If cbx_GroupDoc.Text = "Техническая" Then
-		'	If currentSelectClass.IsSaveDataBase() Then
-		'		If s Is Nothing Then
-		'			'Dim result As DialogResult
-		'			MessageBox.Show("Укажите пожалуйста участок, которому относится документ!", "Сообщение")
-		'			Exit Sub
-		'		End If
-		'	End If
-		'End If
-		
+        If cbx_GroupDoc.Text = "Техническая" Then
+            If currentSelectClass.IsSaveDataBase() Then
+                If sector Is Nothing Then
+                    'Dim result As DialogResult
+                    MessageBox.Show("Укажите пожалуйста участок, которому относится документ!", "Сообщение")
+                    Exit Sub
+                End If
+            End If
+        End If
 
-		Try
-			dataPreviem_(ListClasses(cbx_TypeDoc.SelectedIndex))
-		Catch ex As Exception
-			MessageBox.Show(ex.Message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information)
-			cmd_SaveDoc.Enabled = False
-		End Try
 
-	End Sub
+        Try
+            dataPreviem_(ListClasses(cbx_TypeDoc.SelectedIndex))
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            cmd_SaveDoc.Enabled = False
+        End Try
 
-#End Region
-
-#Region "    Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса"
-
-	''' <summary>
-	''' Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса
-	''' </summary>
-	''' <param name="typeDoc"></param>
-	''' <remarks></remarks>
-	Sub dataPreviem(typeDoc As cls_TypeDoc)
-		typeDoc.classFormation()
-
-		nameFilesSave = typeDoc.NameFilesSaveDoc()
-		nameFolderSaveDoc = typeDoc.NameFolderSaveDoc()
-		dirEndPathSave = typeDoc.DirectoryEndPathSave()
-
-		If TEST(path_SaveDocuments, dirEndPathSave, nameFilesSave) Then
-			cmd_SaveDoc.Enabled = False
-			Throw New Exception("Возможно, слишком длинное поле чертеж или примечание. Пересмотрите ввод и продолжите снова")
-		End If
-
-		lbl_DirName.Text = nameFolderSaveDoc
-		RanameImages(nameFilesSave)
-		cmd_SaveDoc.Enabled = True
-	End Sub
+    End Sub
 
 #End Region
 
 #Region "    Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса"
 
-	''' <summary>
-	''' Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса
-	''' </summary>
-	''' <param name="typeDoc"></param>
-	''' <remarks></remarks>
-	Sub dataPreviem_(typeDoc As cls_TypeDoc)
+    ''' <summary>
+    ''' Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса
+    ''' </summary>
+    ''' <param name="typeDoc"></param>
+    ''' <remarks></remarks>
+    Sub dataPreviem(typeDoc As cls_TypeDoc)
+        typeDoc.classFormation()
+
+        nameFilesSave = typeDoc.NameFilesSaveDoc()
+        nameFolderSaveDoc = typeDoc.NameFolderSaveDoc()
+        dirEndPathSave = typeDoc.DirectoryEndPathSave()
+
+        If TEST(path_SaveDocuments, dirEndPathSave, nameFilesSave) Then
+            cmd_SaveDoc.Enabled = False
+            Throw New Exception("Возможно, слишком длинное поле чертеж или примечание. Пересмотрите ввод и продолжите снова")
+        End If
+
+        lbl_DirName.Text = nameFolderSaveDoc
+        RanameImages(nameFilesSave)
+        cmd_SaveDoc.Enabled = True
+    End Sub
+
+#End Region
+
+#Region "    Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса"
+
+    ''' <summary>
+    ''' Оббощенная процедура при нажатии на кнопку предварительный просмотр переименованных данных конкретного класса
+    ''' </summary>
+    ''' <param name="typeDoc"></param>
+    ''' <remarks></remarks>
+    Sub dataPreviem_(typeDoc As cls_TypeDoc)
 
         If (Not typeDoc.classFormation()) Then Return
 
-		Dim fileName As String = typeDoc.class_FileName
-		Dim directoryName As String = typeDoc.class_FullPathSave
-		Dim dirName As String = typeDoc.class_DirName
+        Dim fileName As String = typeDoc.class_FileName
+        Dim directoryName As String = typeDoc.class_FullPathSave
+        Dim dirName As String = typeDoc.class_DirName
 
-		nameFolderSaveDoc = typeDoc.NameFolderSaveDoc()
-		dirEndPathSave = typeDoc.DirectoryEndPathSave()
-		'nameFullPathSave вместо  directoryName
-		If TEST(path_SaveDocuments, dirName + directoryName, fileName) Then
-			cmd_SaveDoc.Enabled = False
-			Throw New Exception("Возможно, слишком длинное поле чертеж или примечание. Пересмотрите ввод и продолжите снова")
-		End If
+        nameFolderSaveDoc = typeDoc.NameFolderSaveDoc()
+        dirEndPathSave = typeDoc.DirectoryEndPathSave()
+        'nameFullPathSave вместо  directoryName
+        If TEST(path_SaveDocuments, dirName + directoryName, fileName) Then
+            cmd_SaveDoc.Enabled = False
+            Throw New Exception("Возможно, слишком длинное поле чертеж или примечание. Пересмотрите ввод и продолжите снова")
+        End If
 
-		lbl_DirName.Text = nameFolderSaveDoc
-		RanameImages_(typeDoc)
-		cmd_SaveDoc.Enabled = True
-	End Sub
+        lbl_DirName.Text = nameFolderSaveDoc
+        RanameImages_(typeDoc)
+        cmd_SaveDoc.Enabled = True
+    End Sub
 
 #End Region
 
@@ -423,16 +423,16 @@ Public Class frm_SaveDoc
 
             SelectedClassType(currentSelectClass)
 
-			cmd_PreViem.Enabled = True
+            cmd_PreViem.Enabled = True
 
-			If cbx_GroupDoc.Text = "Техническая" Then
-				cmd_SectorShow.Enabled = currentSelectClass.IsSaveDataBase()
-			End If
+            If cbx_GroupDoc.Text = "Техническая" Then
+                cmd_SectorShow.Enabled = currentSelectClass.IsSaveDataBase()
+            End If
 
-		Catch ex As Exception
-			MessageBox.Show(ex.Message)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
 
-		End Try
+        End Try
     End Sub
 
     Private Sub СправкаToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СправкаToolStripMenuItem.Click
@@ -440,7 +440,7 @@ Public Class frm_SaveDoc
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listBox_ShowImages.SelectedIndexChanged
-		img_PictureShow.ImageLocation = ListSelectedFiles(listBox_ShowImages.SelectedIndex).ToString()
+        img_PictureShow.ImageLocation = ListSelectedFiles(listBox_ShowImages.SelectedIndex).ToString()
         img_PictureShow.Refresh()
         img_PictureShow.Visible = True
         lbl_NameImage.Text = "Текущая картинка: " & listBox_ShowImages.SelectedItem.ToString
@@ -462,7 +462,7 @@ Public Class frm_SaveDoc
     ''' <remarks></remarks>
     Function TEST(path_SaveDocuments As String, SaveDocuments As String, nameFile As String) As Boolean
         Dim result As Boolean = False
-		Dim temp As String = "0000000"
+        Dim temp As String = "0000000"
         Dim testString As String = path_SaveDocuments & SaveDocuments & nameFile & temp
         If testString.Length > 248 Then
             result = True
@@ -494,24 +494,24 @@ Public Class frm_SaveDoc
             Exit Sub
         End If
 
-		Do
+        Do
 
-			For i As Integer = 1 To ListSelectedFiles.Count
-				nameImage = nameFolderSaveDoc & " _" & Format(i, "00")
+            For i As Integer = 1 To ListSelectedFiles.Count
+                nameImage = nameFolderSaveDoc & " _" & Format(i, "00")
 
-				listBox_ShowImages.Items.Add(nameImage & ".jpg")
-				ListFilesSave.Add(nameImage & ".jpg")
-			Next
+                listBox_ShowImages.Items.Add(nameImage & ".jpg")
+                ListFilesSave.Add(nameImage & ".jpg")
+            Next
 
-		Loop
+        Loop
 
-	End Sub
+    End Sub
 
 #End Region
 
 #Region "    Процедура переименования картинок и помещение в ListBox на форме    "
 
-	
+
 
 
 
@@ -529,7 +529,7 @@ Public Class frm_SaveDoc
         ListFilesSave.Clear()
 
         Dim fileName As String = typeDoc.class_FileName
-		Dim directoryName As String = typeDoc.class_FullPathSave
+        Dim directoryName As String = typeDoc.class_FullPathSave
         Dim dirName As String = typeDoc.class_DirName
 
         Dim suffixIndex As Integer = 0
@@ -541,16 +541,16 @@ Public Class frm_SaveDoc
 
         If ListSelectedFiles.Count = 1 Then
             Do
-				nameImage = fileName & suffixText
+                nameImage = fileName & suffixText
                 'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
                 Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ListSelectedFiles(0).Extension
                 If (File.Exists(pathFile)) Then
                     suffixIndex += 1
                     suffixText = "(" & suffixIndex & ")"
-				Else
-					Exit Do
+                Else
+                    Exit Do
                 End If
-			Loop
+            Loop
         End If
 
 
@@ -558,31 +558,31 @@ Public Class frm_SaveDoc
 
         Dim k As Integer = 1
 
-		Do
+        Do
 
-			For i As Integer = 1 To ListSelectedFiles.Count
-				nameImage = fileName & suffixText & " _" & Format(i, "00")
+            For i As Integer = 1 To ListSelectedFiles.Count
+                nameImage = fileName & suffixText & " _" & Format(i, "00")
 
                 'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ".jpg"
                 Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & nameImage & ListSelectedFiles(i - 1).Extension
-				If (File.Exists(pathFile)) Then
-					suffixIndex += 1
-					suffixText = "(" & suffixIndex & ")"
-					bool = False
-					Exit For
-				Else
-					bool = True
-				End If
-			Next
+                If (File.Exists(pathFile)) Then
+                    suffixIndex += 1
+                    suffixText = "(" & suffixIndex & ")"
+                    bool = False
+                    Exit For
+                Else
+                    bool = True
+                End If
+            Next
 
-			If bool Then Exit Do
+            If bool Then Exit Do
 
-		Loop
+        Loop
 
 
-		'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & ListSelectedFiles
+        'Dim pathFile As String = path_SaveDocuments & dirName & directoryName & "\" & ListSelectedFiles
 
-		If ListSelectedFiles.Count = 1 Then
+        If ListSelectedFiles.Count = 1 Then
 
             Dim file = ListSelectedFiles(0)
             'Dim _fileName = Strings.Left(file.Name, file.Name.Length - file.Extension.Length + 1)
@@ -595,12 +595,12 @@ Public Class frm_SaveDoc
             'listBox_ShowImages.Items.Add(nameImage)
             'ListFilesSave.Add(nameImage & ".jpg")
 
-			Exit Sub
-		End If
+            Exit Sub
+        End If
 
 
 
-		For i As Integer = 1 To ListSelectedFiles.Count
+        For i As Integer = 1 To ListSelectedFiles.Count
 
 
             Dim file = ListSelectedFiles(i - 1)
@@ -615,11 +615,11 @@ Public Class frm_SaveDoc
             'ListFilesSave.Add(nameImage & ".jpg")
 
 
-		Next
+        Next
 
 
 
-	End Sub
+    End Sub
 
 #End Region
 
@@ -641,7 +641,7 @@ Public Class frm_SaveDoc
         Dim frm As New frm_Sector(d)
 
         Dim result As DialogResult = frm.ShowDialog()
-        s = d.Value
+        sector = d.Value
 
 
     End Sub
